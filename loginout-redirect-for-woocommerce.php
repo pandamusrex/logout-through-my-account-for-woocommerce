@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: LogInOut Redirect for WooCommerce
+ * Plugin Name: Log Out Through My Account Page for WooCommerce
  * Version: 1.0.0
  * Plugin URI: https://github.com/pandamusrex/loginout-redirect-for-woocommerce
  * Description: All users must exit through their WooCommerce my-account page.
@@ -38,51 +38,33 @@ class PandamusRex_LogInOut_Redirect_for_WooCommerce {
     public function __wakeup() {}
 
     public function __construct() {
-        add_filter( 'loginout', array( $this, 'loginout' ), 10, 1 );
+        add_filter( 'logout_url', array( $this, 'logout_url' ), 10, 1 );
     }
 
-    function loginout( $link ) {
-
-        // Filter the link only for logged in users
-        if ( ! is_user_logged_in() ) {
-            return $link;
-        }
+    function logout_url( $url ) {
 
         // Don't call WooCommerce is_account_page if it isn't defined
         if ( ! function_exists( 'is_account_page' ) ) {
-            return $link;
+            return $url;
         }
 
-        // Don't filter the link if we are on the account page
+        // Don't filter the url if we are on the account page
         if ( is_account_page() ) {
-            return $link;
-        }
-
-        // Don't filter the link if it lacks an href
-        $href_string_pos = strpos( $link, 'href' );
-        if ( $href_string_pos === false ) {
-            return $link;
+            return $url;
         }
 
         // Get the ID and URL of the WooCommerce account page
         $my_account_page_id = get_option( 'woocommerce_myaccount_page_id' );
         if ( ! $my_account_page_id ) {
-            return $link;
+            return $url;
         }
 
         $my_account_page_url = get_permalink( $my_account_page_id );
         if ( ! $my_account_page_url ) {
-            return $link;
+            return $url;
         }
 
-        // If we've gotten this far, replace the href with the URL of the account page
-        $link = preg_replace(
-            '/<a(.*)href="([^"]*)"(.*)>/',
-            '<a$1href="' . $my_account_page_url . '"$3>',
-            $link
-        );
-
-        return $link;
+        return $my_account_page_url;
     }
 }
 

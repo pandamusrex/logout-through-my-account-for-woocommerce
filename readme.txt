@@ -1,4 +1,4 @@
-=== LogInOut Redirect for WooCommerce ===
+=== Log Out Through My Account for WooCommerce ===
 Contributors: pandamusrex
 Donate link: https://pandamusrex.com/
 Tags: woocommerce
@@ -17,7 +17,7 @@ All users must exit through their WooCommerce my-account page.
 
 == Frequently Asked Questions ==
 
-= Does this filter the redirect only for logged in users? =
+= Does this filter the logout url only for logged in users? =
 
 Yes!
 

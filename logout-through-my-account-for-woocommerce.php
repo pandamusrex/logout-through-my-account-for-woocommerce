@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Log Out Through My Account Page for WooCommerce
  * Version: 1.0.0
- * Plugin URI: https://github.com/pandamusrex/loginout-redirect-for-woocommerce
+ * Plugin URI: https://github.com/pandamusrex/logout-through-my-account-for-woocommerce
  * Description: All users must exit through their WooCommerce my-account page.
  * Author: PandamusRex
  * Author URI: https://www.github.com/pandamusrex/
@@ -11,7 +11,7 @@
  * Requires at least: 6.4
  * Tested up to: 6.8
  *
- * Text Domain: loginout-redirect-for-woocommerce
+ * Text Domain: logout-through-my-account-for-woocommerce
  * Domain Path: /lang/
  *
  * @package WordPress
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class PandamusRex_LogInOut_Redirect_for_WooCommerce {
+class PandamusRex_LogOut_Through_My_Account_for_WooCommerce {
     private static $instance;
 
     public static function get_instance() {
@@ -68,4 +68,4 @@ class PandamusRex_LogInOut_Redirect_for_WooCommerce {
     }
 }
 
-PandamusRex_LogInOut_Redirect_for_WooCommerce::get_instance();
+PandamusRex_LogOut_Through_My_Account_for_WooCommerce::get_instance();
